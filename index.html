@@ -3,20 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>星辰 | 个人博客</title>
+    <title>深蓝博客 | 技术与创意的空间</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #4361ee;
-            --secondary: #3f37c9;
-            --accent: #4895ef;
-            --light: #f8f9fa;
-            --dark: #212529;
-            --gray: #6c757d;
-            --light-gray: #e9ecef;
+            --primary: #3498db;
+            --primary-dark: #2980b9;
+            --dark-bg: #121212;
+            --darker-bg: #0a0a0a;
+            --card-bg: #1e1e1e;
+            --text: #f0f0f0;
+            --text-secondary: #b0b0b0;
+            --accent: #2ecc71;
             --transition: all 0.3s ease;
-            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.15);
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            --shadow-hover: 0 8px 25px rgba(52, 152, 219, 0.3);
             --radius: 8px;
         }
 
@@ -29,8 +30,11 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: var(--dark);
-            background-color: #f9fafb;
+            color: var(--text);
+            background-color: var(--dark-bg);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         a {
@@ -40,7 +44,7 @@
         }
 
         a:hover {
-            color: var(--secondary);
+            color: var(--primary-dark);
         }
 
         .container {
@@ -52,7 +56,7 @@
 
         /* Header Styles */
         header {
-            background-color: white;
+            background-color: var(--darker-bg);
             box-shadow: var(--shadow);
             position: sticky;
             top: 0;
@@ -70,10 +74,12 @@
             font-size: 1.8rem;
             font-weight: 700;
             color: var(--primary);
+            display: flex;
+            align-items: center;
         }
 
-        .logo span {
-            color: var(--secondary);
+        .logo i {
+            margin-right: 10px;
         }
 
         nav ul {
@@ -86,7 +92,7 @@
         }
 
         nav ul li a {
-            color: var(--dark);
+            color: var(--text);
             font-weight: 500;
             position: relative;
         }
@@ -112,22 +118,35 @@
             border: none;
             font-size: 1.5rem;
             cursor: pointer;
-            color: var(--dark);
+            color: var(--text);
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
+            background: linear-gradient(135deg, var(--darker-bg) 0%, #1a1a2e 100%);
             color: white;
-            padding: 80px 0;
+            padding: 100px 0;
             text-align: center;
             margin-bottom: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(52, 152, 219, 0.1) 0%, transparent 70%);
         }
 
         .hero h1 {
             font-size: 3.5rem;
             margin-bottom: 20px;
             animation: fadeInDown 1s ease;
+            position: relative;
         }
 
         .hero p {
@@ -135,23 +154,40 @@
             max-width: 700px;
             margin: 0 auto 30px;
             animation: fadeInUp 1s ease;
+            position: relative;
+            color: var(--text-secondary);
         }
 
         .btn {
             display: inline-block;
             padding: 12px 30px;
-            background: white;
-            color: var(--primary);
+            background: var(--primary);
+            color: white;
             border-radius: var(--radius);
             font-weight: 600;
             transition: var(--transition);
             animation: fadeIn 1.5s ease;
+            border: none;
+            cursor: pointer;
+            position: relative;
         }
 
         .btn:hover {
+            background: var(--primary-dark);
             transform: translateY(-3px);
             box-shadow: var(--shadow-hover);
-            background: var(--light);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            margin-left: 15px;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
         }
 
         /* Main Content */
@@ -160,16 +196,18 @@
             grid-template-columns: 7fr 3fr;
             gap: 40px;
             margin-bottom: 60px;
+            flex: 1;
         }
 
         /* Blog Posts */
         .post {
-            background: white;
+            background: var(--card-bg);
             border-radius: var(--radius);
             overflow: hidden;
             box-shadow: var(--shadow);
             margin-bottom: 40px;
             transition: var(--transition);
+            position: relative;
         }
 
         .post:hover {
@@ -191,7 +229,7 @@
             display: flex;
             align-items: center;
             margin-bottom: 15px;
-            color: var(--gray);
+            color: var(--text-secondary);
             font-size: 0.9rem;
         }
 
@@ -201,17 +239,18 @@
 
         .post-meta i {
             margin-right: 5px;
+            color: var(--primary);
         }
 
         .post-title {
             font-size: 1.8rem;
             margin-bottom: 15px;
-            color: var(--dark);
+            color: var(--text);
         }
 
         .post-excerpt {
             margin-bottom: 20px;
-            color: var(--gray);
+            color: var(--text-secondary);
         }
 
         .read-more {
@@ -238,8 +277,8 @@
         }
 
         .tag {
-            background: var(--light-gray);
-            color: var(--gray);
+            background: rgba(52, 152, 219, 0.2);
+            color: var(--primary);
             padding: 5px 12px;
             border-radius: 20px;
             font-size: 0.8rem;
@@ -260,7 +299,7 @@
         }
 
         .sidebar-widget {
-            background: white;
+            background: var(--card-bg);
             border-radius: var(--radius);
             padding: 25px;
             margin-bottom: 30px;
@@ -271,8 +310,9 @@
             font-size: 1.3rem;
             margin-bottom: 20px;
             padding-bottom: 10px;
-            border-bottom: 2px solid var(--light-gray);
+            border-bottom: 2px solid rgba(52, 152, 219, 0.3);
             position: relative;
+            color: var(--text);
         }
 
         .widget-title:after {
@@ -289,15 +329,6 @@
             text-align: center;
         }
 
-        .profile-img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin: 0 auto 20px;
-            border: 3px solid var(--light-gray);
-        }
-
         .social-links {
             display: flex;
             justify-content: center;
@@ -311,8 +342,8 @@
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background: var(--light-gray);
-            color: var(--dark);
+            background: rgba(52, 152, 219, 0.2);
+            color: var(--primary);
             margin: 0 5px;
             transition: var(--transition);
         }
@@ -327,7 +358,7 @@
             display: flex;
             margin-bottom: 15px;
             padding-bottom: 15px;
-            border-bottom: 1px solid var(--light-gray);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .popular-posts li:last-child {
@@ -347,16 +378,17 @@
         .popular-posts h4 {
             font-size: 1rem;
             margin-bottom: 5px;
+            color: var(--text);
         }
 
         .popular-posts .post-date {
             font-size: 0.8rem;
-            color: var(--gray);
+            color: var(--text-secondary);
         }
 
         .categories li {
             padding: 10px 0;
-            border-bottom: 1px solid var(--light-gray);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .categories li:last-child {
@@ -366,22 +398,25 @@
         .categories a {
             display: flex;
             justify-content: space-between;
-            color: var(--dark);
+            color: var(--text);
         }
 
         .categories span {
-            background: var(--light-gray);
+            background: rgba(52, 152, 219, 0.2);
             padding: 2px 8px;
             border-radius: 10px;
             font-size: 0.8rem;
+            color: var(--primary);
         }
 
         .subscribe-form input {
             width: 100%;
             padding: 12px;
-            border: 1px solid var(--light-gray);
+            background: var(--darker-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: var(--radius);
             margin-bottom: 15px;
+            color: var(--text);
         }
 
         .subscribe-form button {
@@ -397,14 +432,15 @@
         }
 
         .subscribe-form button:hover {
-            background: var(--secondary);
+            background: var(--primary-dark);
         }
 
         /* Footer */
         footer {
-            background: var(--dark);
+            background: var(--darker-bg);
             color: white;
             padding: 60px 0 30px;
+            margin-top: auto;
         }
 
         .footer-content {
@@ -419,6 +455,7 @@
             margin-bottom: 20px;
             position: relative;
             padding-bottom: 10px;
+            color: var(--text);
         }
 
         .footer-widget h3:after {
@@ -436,18 +473,19 @@
         }
 
         .footer-links a {
-            color: #adb5bd;
+            color: var(--text-secondary);
             transition: var(--transition);
         }
 
         .footer-links a:hover {
-            color: white;
+            color: var(--primary);
             padding-left: 5px;
         }
 
         .contact-info li {
             display: flex;
             margin-bottom: 15px;
+            color: var(--text-secondary);
         }
 
         .contact-info i {
@@ -459,8 +497,88 @@
             text-align: center;
             padding-top: 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #adb5bd;
+            color: var(--text-secondary);
             font-size: 0.9rem;
+        }
+
+        /* Article Detail Page */
+        .article-detail {
+            display: none;
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
+            margin-bottom: 60px;
+        }
+
+        .article-header {
+            margin-bottom: 30px;
+        }
+
+        .article-title {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--text);
+        }
+
+        .article-content {
+            line-height: 1.8;
+        }
+
+        .article-content p {
+            margin-bottom: 20px;
+        }
+
+        .article-content h2 {
+            margin: 30px 0 15px;
+            color: var(--primary);
+        }
+
+        .back-to-blog {
+            display: inline-block;
+            margin-top: 30px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .back-to-blog i {
+            margin-right: 5px;
+        }
+
+        /* Create Article Form */
+        .create-article {
+            display: none;
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
+            margin-bottom: 60px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            background: var(--darker-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius);
+            color: var(--text);
+            font-family: inherit;
+        }
+
+        textarea.form-control {
+            min-height: 200px;
+            resize: vertical;
         }
 
         /* Animations */
@@ -543,14 +661,14 @@
 <!-- Header -->
 <header>
     <div class="container header-container">
-        <div class="logo">星辰<span>博客</span></div>
+        <div class="logo"><i class="fas fa-blog"></i>深蓝博客</div>
         <nav>
             <ul>
-                <li><a href="#">首页</a></li>
+                <li><a href="#" class="nav-link" data-page="home">首页</a></li>
+                <li><a href="#" class="nav-link" data-page="create">发表文章</a></li>
                 <li><a href="#">技术</a></li>
                 <li><a href="#">设计</a></li>
                 <li><a href="#">生活</a></li>
-                <li><a href="#">旅行</a></li>
                 <li><a href="#">关于</a></li>
             </ul>
         </nav>
@@ -565,15 +683,16 @@
     <div class="container">
         <h1>探索技术与创意的世界</h1>
         <p>分享编程技巧、设计理念和生活感悟，记录个人成长与思考</p>
-        <a href="#" class="btn">浏览文章</a>
+        <a href="#" class="btn nav-link" data-page="create">发表文章</a>
+        <a href="#" class="btn btn-outline">浏览文章</a>
     </div>
 </section>
 
 <!-- Main Content -->
 <div class="container main-content">
     <!-- Blog Posts -->
-    <main>
-        <article class="post">
+    <main id="blog-posts">
+        <article class="post" data-id="1">
             <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Web Development" class="post-img">
             <div class="post-content">
                 <div class="post-meta">
@@ -583,7 +702,7 @@
                 </div>
                 <h2 class="post-title">现代JavaScript框架的演变与未来趋势</h2>
                 <p class="post-excerpt">探索从jQuery到React、Vue和Svelte的JavaScript框架发展历程，分析当前技术生态系统的现状，并预测未来前端开发的可能方向...</p>
-                <a href="#" class="read-more">阅读全文</a>
+                <a href="#" class="read-more view-article">阅读全文</a>
                 <div class="tags">
                     <a href="#" class="tag">JavaScript</a>
                     <a href="#" class="tag">前端开发</a>
@@ -592,7 +711,7 @@
             </div>
         </article>
 
-        <article class="post">
+        <article class="post" data-id="2">
             <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="UI Design" class="post-img">
             <div class="post-content">
                 <div class="post-meta">
@@ -602,7 +721,7 @@
                 </div>
                 <h2 class="post-title">2023年UI/UX设计趋势解析</h2>
                 <p class="post-excerpt">随着技术的进步和用户需求的变化，UI/UX设计领域也在不断演进。本文将深入探讨2023年最值得关注的设计趋势，包括暗黑模式、微交互、3D元素等...</p>
-                <a href="#" class="read-more">阅读全文</a>
+                <a href="#" class="read-more view-article">阅读全文</a>
                 <div class="tags">
                     <a href="#" class="tag">UI设计</a>
                     <a href="#" class="tag">用户体验</a>
@@ -611,7 +730,7 @@
             </div>
         </article>
 
-        <article class="post">
+        <article class="post" data-id="3">
             <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Productivity" class="post-img">
             <div class="post-content">
                 <div class="post-meta">
@@ -621,7 +740,7 @@
                 </div>
                 <h2 class="post-title">提升开发效率的10个VSCode扩展</h2>
                 <p class="post-excerpt">Visual Studio Code已经成为现代开发者的首选编辑器。本文分享10个能显著提升编码效率和体验的扩展，涵盖代码片段、调试工具、主题美化等方面...</p>
-                <a href="#" class="read-more">阅读全文</a>
+                <a href="#" class="read-more view-article">阅读全文</a>
                 <div class="tags">
                     <a href="#" class="tag">开发工具</a>
                     <a href="#" class="tag">VSCode</a>
@@ -631,11 +750,48 @@
         </article>
     </main>
 
+    <!-- Article Detail -->
+    <div id="article-detail" class="article-detail">
+        <div class="article-header">
+            <div class="post-meta">
+                <span><i class="far fa-calendar"></i> <span id="article-date"></span></span>
+                <span><i class="far fa-user"></i> <span id="article-author"></span></span>
+            </div>
+            <h1 class="article-title" id="article-title"></h1>
+            <div class="tags" id="article-tags"></div>
+        </div>
+        <div class="article-content" id="article-content"></div>
+        <a href="#" class="back-to-blog" id="back-to-blog"><i class="fas fa-arrow-left"></i> 返回博客</a>
+    </div>
+
+    <!-- Create Article Form -->
+    <div id="create-article" class="create-article">
+        <h2 class="article-title">发表新文章</h2>
+        <form id="article-form">
+            <div class="form-group">
+                <label for="article-title-input">标题</label>
+                <input type="text" id="article-title-input" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="article-image">封面图片URL</label>
+                <input type="text" id="article-image" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="article-tags-input">标签（用逗号分隔）</label>
+                <input type="text" id="article-tags-input" class="form-control" placeholder="JavaScript, 前端开发, 框架">
+            </div>
+            <div class="form-group">
+                <label for="article-content-input">内容</label>
+                <textarea id="article-content-input" class="form-control" required></textarea>
+            </div>
+            <button type="submit" class="btn">发布文章</button>
+        </form>
+    </div>
+
     <!-- Sidebar -->
     <aside class="sidebar">
         <div class="sidebar-widget about-me">
             <div class="widget-title">关于我</div>
-            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" alt="Profile" class="profile-img">
             <p>前端工程师，热爱技术与设计，喜欢分享知识和经验。关注Web开发、UI/UX设计和效率工具。</p>
             <div class="social-links">
                 <a href="#"><i class="fab fa-github"></i></a>
@@ -700,14 +856,14 @@
         <div class="footer-content">
             <div class="footer-widget">
                 <h3>关于博客</h3>
-                <p>星辰博客是一个分享技术、设计和生活感悟的个人空间。记录成长，分享知识，与志同道合者交流。</p>
+                <p>深蓝博客是一个分享技术、设计和生活感悟的个人空间。记录成长，分享知识，与志同道合者交流。</p>
             </div>
 
             <div class="footer-widget">
                 <h3>快速链接</h3>
                 <ul class="footer-links">
-                    <li><a href="#">首页</a></li>
-                    <li><a href="#">关于我</a></li>
+                    <li><a href="#" class="nav-link" data-page="home">首页</a></li>
+                    <li><a href="#" class="nav-link" data-page="create">发表文章</a></li>
                     <li><a href="#">技术文章</a></li>
                     <li><a href="#">设计资源</a></li>
                     <li><a href="#">联系我</a></li>
@@ -728,21 +884,244 @@
             <div class="footer-widget">
                 <h3>联系我</h3>
                 <ul class="contact-info">
-                    <li><i class="fas fa-envelope"></i> contact@xingchen.com</li>
+                    <li><i class="fas fa-envelope"></i> contact@deepblue.com</li>
                     <li><i class="fas fa-map-marker-alt"></i> 北京市海淀区</li>
-                    <li><i class="fas fa-link"></i> www.xingchenblog.com</li>
+                    <li><i class="fas fa-link"></i> www.deepblueblog.com</li>
                 </ul>
             </div>
         </div>
 
         <div class="copyright">
-            &copy; 2023 星辰博客 | 设计与开发 by 星辰
+            &copy; 2023 深蓝博客 | 设计与开发 by 星辰
         </div>
     </div>
 </footer>
 
 <script>
-    // 简单的移动菜单切换
+    // 页面导航功能
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const page = this.getAttribute('data-page');
+            showPage(page);
+        });
+    });
+
+    // 显示特定页面
+    function showPage(page) {
+        // 隐藏所有页面
+        document.getElementById('blog-posts').style.display = 'none';
+        document.getElementById('article-detail').style.display = 'none';
+        document.getElementById('create-article').style.display = 'none';
+
+        // 显示请求的页面
+        if (page === 'home') {
+            document.getElementById('blog-posts').style.display = 'block';
+        } else if (page === 'article') {
+            document.getElementById('article-detail').style.display = 'block';
+        } else if (page === 'create') {
+            document.getElementById('create-article').style.display = 'block';
+        }
+    }
+
+    // 查看文章详情
+    document.querySelectorAll('.view-article').forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            const articleId = this.closest('.post').getAttribute('data-id');
+            showArticleDetail(articleId);
+        });
+    });
+
+    // 返回博客列表
+    document.getElementById('back-to-blog').addEventListener('click', function(e) {
+        e.preventDefault();
+        showPage('home');
+    });
+
+    // 显示文章详情
+    function showArticleDetail(articleId) {
+        // 模拟从数据库获取文章数据
+        const articles = {
+            '1': {
+                title: '现代JavaScript框架的演变与未来趋势',
+                date: '2023年10月15日',
+                author: '星辰',
+                tags: ['JavaScript', '前端开发', '框架比较'],
+                content: `
+                        <p>在过去的十年中，JavaScript框架经历了翻天覆地的变化。从最初的jQuery到如今的React、Vue和Angular三足鼎立，前端开发的世界变得日益复杂而强大。</p>
+
+                        <h2>框架的演变历程</h2>
+                        <p>2006年，jQuery的出现彻底改变了前端开发。它解决了浏览器兼容性问题，提供了简洁的DOM操作API，成为当时最流行的JavaScript库。</p>
+                        <p>2010年，Backbone.js和AngularJS的出现标志着前端MVC框架的兴起。这些框架引入了数据绑定、路由等概念，使构建单页面应用成为可能。</p>
+                        <p>2013年，React的发布带来了虚拟DOM和组件化开发的新理念。它的声明式编程模型大大提高了开发效率和代码可维护性。</p>
+                        <p>2014年，Vue.js诞生，它结合了Angular和React的优点，提供了渐进式框架的解决方案。</p>
+
+                        <h2>当前框架生态</h2>
+                        <p>如今，React、Vue和Angular已成为三大主流框架：</p>
+                        <ul>
+                            <li><strong>React</strong>：由Facebook维护，拥有最大的生态系统和社区支持</li>
+                            <li><strong>Vue</strong>：渐进式框架，学习曲线平缓，适合各种规模的项目</li>
+                            <li><strong>Angular</strong>：由Google维护，提供完整的解决方案</li>
+                        </ul>
+
+                        <h2>未来趋势</h2>
+                        <p>随着Web技术的不断发展，JavaScript框架也在持续演进：</p>
+                        <p><strong>1. 更小的包体积</strong>：Tree shaking、代码分割等技术使应用更轻量</p>
+                        <p><strong>2. 服务端渲染(SSR)</strong>：Next.js、Nuxt.js等框架提供更好的SEO和首屏性能</p>
+                        <p><strong>3. Web Components</strong>：原生组件标准逐渐成熟，框架开始支持</p>
+                        <p><strong>4. TypeScript普及</strong>：类型安全成为大型项目的标配</p>
+                        <p><strong>5. 微前端架构</strong>：将大型应用拆分为独立部署的子应用</p>
+
+                        <p>无论选择哪个框架，理解其核心概念和设计思想才是最重要的。未来，我们可能会看到更多专注于性能、开发体验和可访问性的创新。</p>
+                    `
+            },
+            '2': {
+                title: '2023年UI/UX设计趋势解析',
+                date: '2023年10月8日',
+                author: '星辰',
+                tags: ['UI设计', '用户体验', '设计趋势'],
+                content: `
+                        <p>随着技术的进步和用户需求的变化，UI/UX设计领域也在不断演进。2023年，我们看到了一些令人兴奋的新趋势，这些趋势不仅影响视觉设计，也改变了用户体验的方式。</p>
+
+                        <h2>1. 暗黑模式成为标配</h2>
+                        <p>暗黑模式已经从可选功能变成了必备特性。它不仅能减少眼睛疲劳，还能节省设备电量。2023年，优秀的应用都会提供完善的暗黑模式支持。</p>
+
+                        <h2>2. 玻璃拟态(Glassmorphism)</h2>
+                        <p>继拟物化、扁平化设计之后，玻璃拟态成为新的视觉趋势。它通过半透明效果和模糊背景创造层次感，给界面带来现代感和深度。</p>
+
+                        <h2>3. 3D元素与动画</h2>
+                        <p>随着WebGL和WebGPU技术的发展，3D元素在网页设计中越来越常见。从产品展示到交互元素，3D技术为用户提供了更沉浸的体验。</p>
+
+                        <h2>4. 微交互的精细化</h2>
+                        <p>微交互不再是简单的加载动画，而是变得更加精细和有意义。它们提供即时反馈，引导用户操作，增强用户体验。</p>
+
+                        <h2>5. 包容性设计</h2>
+                        <p>可访问性成为设计的重要考量因素。设计师更加关注色盲用户、运动障碍用户等特殊群体的需求，创造更具包容性的产品。</p>
+
+                        <h2>6. 情感化设计</h2>
+                        <p>在功能完善的基础上，设计师开始关注用户的情感体验。通过微妙的动画、个性化的内容和人性化的交互，产品与用户建立情感连接。</p>
+
+                        <p>2023年的设计趋势强调用户体验的深度和广度，技术服务于情感，功能融合于美感。作为设计师，我们需要不断学习新技术，同时保持对用户需求的敏感度。</p>
+                    `
+            },
+            '3': {
+                title: '提升开发效率的10个VSCode扩展',
+                date: '2023年10月1日',
+                author: '星辰',
+                tags: ['开发工具', 'VSCode', '生产力'],
+                content: `
+                        <p>Visual Studio Code已经成为现代开发者的首选编辑器。其强大的扩展生态系统是它成功的关键因素之一。本文将介绍10个能显著提升编码效率和体验的扩展。</p>
+
+                        <h2>1. ESLint</h2>
+                        <p>实时JavaScript/TypeScript代码检查，帮助保持代码风格一致，避免常见错误。</p>
+
+                        <h2>2. Prettier</h2>
+                        <p>代码格式化工具，支持多种语言，可与ESLint配合使用，确保团队代码风格统一。</p>
+
+                        <h2>3. GitLens</h2>
+                        <p>增强VSCode内置的Git功能，显示代码作者、提交历史等信息，提高代码可追溯性。</p>
+
+                        <h2>4. REST Client</h2>
+                        <p>直接在编辑器中发送HTTP请求并查看响应，替代Postman等工具，提高API开发效率。</p>
+
+                        <h2>5. Bracket Pair Colorizer</h2>
+                        <p>为匹配的括号添加颜色标识，使代码结构一目了然，特别适合处理多层嵌套代码。</p>
+
+                        <h2>6. Auto Rename Tag</h2>
+                        <p>自动重命名配对的HTML/XML标签，修改开始标签时自动修改结束标签。</p>
+
+                        <h2>7. Path Intellisense</h2>
+                        <p>自动补全文件路径，减少手动输入路径的错误，提高文件引用效率。</p>
+
+                        <h2>8. Live Server</h2>
+                        <p>启动本地开发服务器并支持热重载，静态页面开发必备工具。</p>
+
+                        <h2>9. Code Spell Checker</h2>
+                        <p>代码拼写检查器，避免变量名、注释中的拼写错误，提高代码可读性。</p>
+
+                        <h2>10. Material Icon Theme</h2>
+                        <p>美观的文件图标主题，使不同文件类型一目了然，提升视觉体验。</p>
+
+                        <p>这些扩展只是VSCode生态系统的冰山一角。合理选择和配置扩展，可以打造出最适合自己工作流的开发环境，显著提升开发效率和体验。</p>
+                    `
+            }
+        };
+
+        const article = articles[articleId];
+        if (article) {
+            document.getElementById('article-title').textContent = article.title;
+            document.getElementById('article-date').textContent = article.date;
+            document.getElementById('article-author').textContent = article.author;
+            document.getElementById('article-content').innerHTML = article.content;
+
+            // 处理标签
+            const tagsContainer = document.getElementById('article-tags');
+            tagsContainer.innerHTML = '';
+            article.tags.forEach(tag => {
+                const tagElement = document.createElement('a');
+                tagElement.href = '#';
+                tagElement.className = 'tag';
+                tagElement.textContent = tag;
+                tagsContainer.appendChild(tagElement);
+            });
+
+            showPage('article');
+        }
+    }
+
+    // 发表文章表单提交
+    document.getElementById('article-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const title = document.getElementById('article-title-input').value;
+        const content = document.getElementById('article-content-input').value;
+        const tags = document.getElementById('article-tags-input').value.split(',').map(tag => tag.trim());
+
+        if (title && content) {
+            // 创建新文章元素
+            const newArticle = document.createElement('article');
+            newArticle.className = 'post';
+            newArticle.setAttribute('data-id', Date.now());
+
+            newArticle.innerHTML = `
+                    <img src="${document.getElementById('article-image').value || 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80'}" alt="${title}" class="post-img">
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span><i class="far fa-calendar"></i> ${new Date().toLocaleDateString('zh-CN')}</span>
+                            <span><i class="far fa-user"></i> 星辰</span>
+                            <span><i class="far fa-comments"></i> 0条评论</span>
+                        </div>
+                        <h2 class="post-title">${title}</h2>
+                        <p class="post-excerpt">${content.substring(0, 150)}...</p>
+                        <a href="#" class="read-more view-article">阅读全文</a>
+                        <div class="tags">
+                            ${tags.map(tag => `<a href="#" class="tag">${tag}</a>`).join('')}
+                        </div>
+                    </div>
+                `;
+
+            // 添加到文章列表顶部
+            document.getElementById('blog-posts').prepend(newArticle);
+
+            // 添加事件监听器
+            newArticle.querySelector('.view-article').addEventListener('click', function(e) {
+                e.preventDefault();
+                showArticleDetail(newArticle.getAttribute('data-id'));
+            });
+
+            // 重置表单
+            this.reset();
+
+            // 显示成功消息
+            alert('文章发布成功！');
+
+            // 返回博客列表
+            showPage('home');
+        }
+    });
+
+    // 移动菜单切换
     document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
         const nav = document.querySelector('nav ul');
         if (nav.style.display === 'flex') {
@@ -754,8 +1133,8 @@
             nav.style.top = '70px';
             nav.style.left = '0';
             nav.style.width = '100%';
-            nav.style.backgroundColor = 'white';
-            nav.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
+            nav.style.backgroundColor = 'var(--darker-bg)';
+            nav.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.5)';
             nav.style.padding = '20px 0';
 
             nav.querySelectorAll('li').forEach(li => {
@@ -775,16 +1154,6 @@
         } else {
             alert('请输入有效的邮箱地址');
         }
-    });
-
-    // 平滑滚动
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
     });
 </script>
 </body>
